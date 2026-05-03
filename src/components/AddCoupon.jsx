@@ -14,6 +14,7 @@ const emptyForm = {
 export default function AddCoupon({ onClose, onSubmit, couponToUpdate }) {
   const isEdit = !!couponToUpdate;
   const [form, setForm] = useState(emptyForm);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (couponToUpdate) {
@@ -34,16 +35,22 @@ export default function AddCoupon({ onClose, onSubmit, couponToUpdate }) {
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({
-      title: form.title,
-      category: form.category,
-      totalAmount: form.totalAmount,
-      remainAmount: form.remainAmount,
-      description: form.description,
-      expireDate: form.expireDate ? new Date(form.expireDate) : null,
-    });
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await onSubmit({
+        title: form.title,
+        category: form.category,
+        totalAmount: form.totalAmount,
+        remainAmount: form.remainAmount,
+        description: form.description,
+        expireDate: form.expireDate ? new Date(form.expireDate) : null,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -62,7 +69,7 @@ export default function AddCoupon({ onClose, onSubmit, couponToUpdate }) {
           <FloatingLabelInput label="מידע / תיאור" value={form.description} onChange={set('description')} multiline />
           <div className="modal__actions">
             <button type="button" className="btn btn--outline" onClick={onClose}>סגירה</button>
-            <button type="submit" className="btn btn--primary">{isEdit ? 'עריכה' : 'הוספה'}</button>
+            <button type="submit" className="btn btn--primary" disabled={submitting}>{isEdit ? 'עריכה' : 'הוספה'}</button>
           </div>
         </form>
       </div>
