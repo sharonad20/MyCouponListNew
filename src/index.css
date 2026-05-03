@@ -111,6 +111,47 @@ input, textarea {
   border-radius: 10px;
 }
 
+.badge--category {
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.badge--amount {
+  background: #eaf6fd;
+  color: #129BDB;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.badge--warning {
+  background: #f39c12;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.badge--expired-badge {
+  background: #95a5a6;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.coupon-card--expiring {
+  border-right: 4px solid #f39c12;
+}
+
+.coupon-card--expired {
+  border-right: 4px solid #bdc3c7;
+  opacity: 0.8;
+}
+
 .coupon-card__arrow {
   font-size: 12px;
   color: #888;
@@ -307,27 +348,99 @@ input, textarea {
   text-align: center;
 }
 
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.stats-bar__item {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stats-bar__value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #129BDB;
+}
+
+.stats-bar__label {
+  font-size: 12px;
+  color: #888;
+}
+
 /* Toolbar */
 .toolbar {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 14px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
-.toolbar__label {
+.toolbar__search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   font-size: 14px;
-  color: #555;
+  font-family: inherit;
+  outline: none;
+  direction: rtl;
+}
+
+.toolbar__search:focus {
+  border-color: #129BDB;
+}
+
+.toolbar__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toolbar__sort {
   flex: 1;
+  padding: 7px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  background: #fff;
+  cursor: pointer;
+  direction: rtl;
+}
+
+.toolbar__sort:focus {
+  border-color: #129BDB;
+}
+
+.toolbar__used-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .toolbar__checkbox {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   accent-color: #129BDB;
   cursor: pointer;
 }
@@ -362,4 +475,18 @@ input, textarea {
   color: #aaa;
   padding: 40px 20px;
   font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.empty-state__icon {
+  font-size: 48px;
+  margin-bottom: 4px;
+}
+
+.empty-state__sub {
+  font-size: 13px;
+  color: #ccc;
 }
