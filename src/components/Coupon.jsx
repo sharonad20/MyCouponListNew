@@ -15,9 +15,6 @@ export default function Coupon({ coupon, onEdit }) {
   const { setCouponUsed, deleteCoupon } = useAuth();
   const [expanded, setExpanded] = useState(false);
 
-  const progress =
-    coupon.totalAmount > 0 ? Math.min(coupon.remainAmount / coupon.totalAmount, 1) : 0;
-
   const description = decryptText(coupon.description ?? '');
 
   return (
@@ -54,10 +51,6 @@ export default function Coupon({ coupon, onEdit }) {
           <div className="coupon-detail">
             <span className="coupon-detail__label">נותר</span>
             <span>₪{coupon.remainAmount ?? 0}</span>
-          </div>
-
-          <div className="progress-bar">
-            <div className="progress-bar__fill" style={{ width: `${progress * 100}%` }} />
           </div>
 
           {coupon.expireDate && (
